@@ -370,6 +370,7 @@ trait ElasticquentTrait
     {
         $params = array(
             'index' => $this->getIndexName(),
+            'type' => $this->getTypeName(),
         );
 
         if ($getIdIfPossible && $this->getKey()) {
@@ -426,7 +427,6 @@ trait ElasticquentTrait
     /**
      * Get Mapping
      *
-     * @return void
      */
     public static function getMapping()
     {
@@ -449,6 +449,7 @@ trait ElasticquentTrait
         $instance = new static;
 
         $mapping = $instance->getBasicEsParams();
+        unset($mapping['type']);
 
         $params = array(
             '_source' => array('enabled' => true),
